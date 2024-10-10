@@ -5,6 +5,8 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
+//here we use StringProperty and IntegerProperty as state property.
+
 public class Employee {
     private StringProperty name;
     private IntegerProperty salary;
