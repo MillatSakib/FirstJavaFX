@@ -1,9 +1,7 @@
 package com.fxlearning.sm.fristjavafxapp;
 
 import javafx.application.Application;
-import javafx.beans.property.ReadOnlyBooleanProperty;
-import javafx.beans.property.ReadOnlyIntegerProperty;
-import javafx.beans.property.ReadOnlyIntegerWrapper;
+import javafx.beans.property.*;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -11,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -52,14 +51,24 @@ public class HelloApplication extends Application {
 
           field1.textProperty().bind(field.textProperty());      //uni-directional binding
 
-
+        //event handler
+        Label label2 = new Label("Tumi Mor Jiboner Vabona");
+        Button button2 = new Button("Click for Magic!");
+//        button2.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> label2.setText("Hridoyer shukher dola!"));
+        button2.setOnAction(e-> label2.setText("Hridoyer shukher dola!"));
+        StringProperty c= new SimpleStringProperty("f");
+        int a=0,b=0;
+        Label label3 = new Label("");
+        label3.textProperty().bind(c.concat(" and key press ").concat(c));
         //set position, padding, spacing and window size
         root.setAlignment(Pos.CENTER);
         root.setPadding(new Insets(20,20,20,20));
         root.setSpacing(20);
-        root.getChildren().addAll(text, button,field1, field);
+        root.getChildren().addAll(text, button,field1, field, label2, button2,label3);
         Scene scene = new Scene(root, 350,300);
+        scene.setOnKeyPressed(keyEvent -> c.set(keyEvent.getText()));
         stage.setScene(scene);
+        stage.setOnShowing(windowEvent -> System.out.println("Stage is showing!"));
         stage.show();
     }
 
